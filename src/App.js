@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+import { Route, Switch, useLocation} from 'react-router-dom'
 import './App.css';
+import Home from './components/Hero';
+import SingleWork from './components/SingleWork';
+import Bar from './pages';
+import { AnimatePresence } from 'framer-motion';
+import GlobalStyle from './globalStyles';
+import styled from 'styled-components';
+import Work from './components/Work';
+import Contact from './components/Contact';
+
+
+const Section = styled.section`
+  overflow-x: hidden;
+`;
 
 function App() {
+  let location = useLocation();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Section>
+    <GlobalStyle />
+    <AnimatePresence  exitBeforeEnter >
+    <Bar />
+     <Switch location={location} key={location.pathname}>
+       <Route component={Home} path="/" exact />
+       <Route component={SingleWork} path="/work/:slug" />
+       <Route component={Work} path="/work" />
+       <Route component={Contact} path="/contact" />
+     </Switch>
+     </AnimatePresence>
+     </Section>
   );
 }
 
