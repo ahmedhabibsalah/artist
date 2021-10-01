@@ -10,7 +10,7 @@ import { animationTwo } from '../animations';
     function sendEmail(e) {
         e.preventDefault();
 
-    emailjs.sendForm('#####', '#####', form.current, '#####')
+    emailjs.sendForm('service_76gm7kx', 'template_v79s8y6', form.current, 'user_18Td7PjM7Vb2tN8DdpIun')
         .then((result) => {
             console.log(result.text);
         }, (error) => {
